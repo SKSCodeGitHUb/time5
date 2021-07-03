@@ -30,7 +30,7 @@ pipeline {
                 success {
                 	echo 'Build Successful'
                     archiveArtifacts 'web/target/*.war'
-					bat "copy web/target/*.war D:\Tomcat\apache-tomcat-9.0.46-windows-x64/apache-tomcat-9.0.46/webapps"
+					bat "copy web/target/*.war D:/Tomcat/apache-tomcat-9.0.46-windows-x64/apache-tomcat-9.0.46/webapps"
                 }   
             }       
 		}
