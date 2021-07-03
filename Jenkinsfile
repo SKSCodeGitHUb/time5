@@ -5,7 +5,7 @@ pipeline {
         TomcatPath = 'D:/Tomcat/apache-tomcat-9.0.46-windows-x64/apache-tomcat-9.0.46'
         Tomcat_Login = 'jenkins'
         Tomcat_URL = 'http://localhost:8081/'
-        Context_Path = 'time-tracker-web-0.5.0-SNAPSHOT'
+        Context_Path = 'TimeTracker'
     }
     stages {
         stage('Checkout') {
@@ -39,7 +39,7 @@ pipeline {
 		}
 		stage('Tomcat Deployment') {
             steps {
-               	deploy adapters: [tomcat9(credentialsId: 'ebf5fe32-90d2-4763-8d6b-a6cca5d64870', path: '', url: 'http://localhost:8081/')], contextPath: 'time-tracker-web-0.5.0-SNAPSHOT', war: '**/*.war'
+               	deploy adapters: [tomcat9(credentialsId: 'ebf5fe32-90d2-4763-8d6b-a6cca5d64870', path: '', url: 'http://localhost:8081/')], contextPath: Context_Path, war: '**/*.war'
             }
 
             post {
