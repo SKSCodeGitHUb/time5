@@ -5,7 +5,7 @@ pipeline {
         TomcatPath = 'D:/Tomcat/apache-tomcat-9.0.46-windows-x64/apache-tomcat-9.0.46'
         Tomcat_Login = 'jenkins'
         Tomcat_URL = 'http://localhost:8081/'
-        Context_Path = 'time5'
+        Context_Path = 'TimeTracker'
     }
     stages {
         stage('Checkout') {
