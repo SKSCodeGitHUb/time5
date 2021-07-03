@@ -39,7 +39,7 @@ pipeline {
 		}
 		stage('Tomcat Deployment') {
             steps {
-               	deploy adapters: [tomcat9(credentialsId: Tomcat_Login, path: '', url: Tomcat_URL)], contextPath: Context_Path, onFailure: false, war: '**/*.war'
+               	deploy adapters: [tomcat9(credentialsId: 'ebf5fe32-90d2-4763-8d6b-a6cca5d64870', path: '', url: 'http://localhost:8081/')], contextPath: 'Timetracker', war: '**/*.war'
             }
 
             post {
