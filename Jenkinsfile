@@ -2,9 +2,6 @@ pipeline {
     agent any
     environment { 
     	GITUrl = 'https://github.com/SKSCodeGitHUb/time5.git'
-        TomcatPath = 'D:/Tomcat/apache-tomcat-9.0.46-windows-x64/apache-tomcat-9.0.46'
-        Tomcat_URL = 'http://localhost:8081/'
-        Context_Path = 'time5'
     }
     stages {
         stage('Checkout') {
@@ -36,20 +33,5 @@ pipeline {
                 }   
             }       
 		}
-		stage('Tomcat Deployment') {
-            steps {
-               	deploy adapters: [tomcat9(credentialsId: Tomcat_Login, path: '', url: Tomcat_URL)], contextPath: Context_Path, onFailure: false, war: '**/*.war'
-            }
-
-            post {
-                  always { 
-           			 echo 'Deployment step executed'
-       			 }
-                success {
-                	echo 'Deployment Successful'
-                }
-                
-            }
-        }
     }
 }
