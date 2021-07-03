@@ -2,6 +2,10 @@ pipeline {
     agent any
     environment { 
     	GITUrl = 'https://github.com/SKSCodeGitHUb/time5.git'
+        TomcatPath = 'D:/Tomcat/apache-tomcat-9.0.46-windows-x64/apache-tomcat-9.0.46'
+        Tomcat_Login = 'jenkins'
+        Tomcat_URL = 'http://localhost:8081/'
+        Context_Path = 'time5'
     }
     stages {
         stage('Checkout') {
@@ -29,10 +33,24 @@ pipeline {
        			 }
                 success {
                 	echo 'Build Successful'
-                    archiveArtifacts 'web/target/*.war'
-					bat 'copy web/target/*.war D:/Tomcat/apache-tomcat-9.0.46-windows-x64/apache-tomcat-9.0.46/webapps'
+                    archiveArtifacts 'web/target/*.war'        
                 }   
             }       
 		}
+		stage('Tomcat Deployment') {
+            steps {
+               	deploy adapters: [tomcat9(credentialsId: Tomcat_Login, path: '', url: Tomcat_URL)], contextPath: Context_Path, onFailure: false, war: '**/*.war'
+            }
+
+            post {
+                  always { 
+           			 echo 'Deployment step executed'
+       			 }
+                success {
+                	echo 'Deployment Successful'
+                }
+                
+            }
+        }
     }
 }
