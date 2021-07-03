@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout') {
             
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/SKSCodeGitHUb/time3.git']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/SKSCodeGitHUb/time5.git']]])
             }
         }
         stage('Clean Test') {
